@@ -66,6 +66,7 @@ select {
 }
 
 
+
 [data-theme="light"] input,
 [data-theme="light"] select{
     border: 1px solid rgba(0,0,0,.12);
