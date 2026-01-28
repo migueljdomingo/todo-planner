@@ -117,3 +117,22 @@ button.secondary{
     text-decoration: line-through;
 }
 
+
+.todo{
+    transition: transform 0.12s ease, background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.todo:hover{
+    transform: translateY(-1px);
+    background-color: rgba(255,255,255,.03);
+    border-color: rgba(255,255,255,.3);
+}
+
+.icon-btn {
+    transition: transform 0.12s ease, opacity 0.15s ease;
+}
+
+.icon-btn:hover {
+    transform: scale(1.08);
+    opacity: 0.9;
+}

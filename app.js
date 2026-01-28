@@ -115,8 +115,17 @@ function toggleDone(id) {
     render();
 }
 
+//update Counts function
+function updateTabCounts() {
+    document.getElementById('dailyCount').textContent = todos.filter(todo => todo.timeframe === 'daily').length;
+    document.getElementById('weeklyCount').textContent = todos.filter(todo => todo.timeframe === 'weekly').length;
+    document.getElementById('monthlyCount').textContent = todos.filter(todo => todo.timeframe === 'monthly').length;
+    document.getElementById('allCount').textContent = todos.length;
+}
+
 //Rendering function
 function render() {
+    updateTabCounts();
     todoList.innerHTML = '';
 
     const visibleTodos =

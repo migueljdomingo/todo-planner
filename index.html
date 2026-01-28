@@ -30,10 +30,14 @@
         </form>
 
         <div class="row tabs" style="margin-top:14px;">
-            <button type="button" class="active" data-filter="daily">Daily</button>
-            <button type="button" data-filter="weekly">Weekly</button>
-            <button type="button" data-filter="monthly">Monthly</button>
-            <button type="button" data-filter="all">All</button>
+            <button type="button" class="active" data-filter="daily">Daily (<span id="dailyCount">0</span>)
+            </button>
+            <button type="button" data-filter="weekly">Weekly (<span id="weeklyCount">0</span>)
+            </button>
+            <button type="button" data-filter="monthly">Monthly (<span id="monthlyCount">0</span>)
+            </button>
+            <button type="button" data-filter="all">All (<span id="allCount">0</span>)
+            </button>
         </div>
 
         <div id="stats" class="small" style="margin-top:12px"></div>
