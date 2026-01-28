@@ -5,6 +5,7 @@ const todoList = document.getElementById('list');
 const stats = document.getElementById('stats');
 const tabButtons = document.querySelectorAll('.tabs button');
 
+// Debugging: Log the selected elements
 console.log({
     todoForm,
     titleInput,
@@ -14,6 +15,23 @@ console.log({
     tabButtons: tabButtons.length,
 });
 
+const STORAGE_KEY = 'todo-app:v1';
+
+// save todos to localStorage
+function saveTodos() {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+}
+
+// Load todos from localStorage
+function loadTodos() {
+    try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) ?? [];
+    } catch {
+        return [];
+    }
+}
+
+// Function to escape HTML special characters
 function escapeHtml(str) {
   return str.replace(/[&<>"']/g, (ch) => ({
     "&": "&amp;",
@@ -24,6 +42,7 @@ function escapeHtml(str) {
   }[ch]));
 }
 
+//form submit event
 form.addEventListener('submit', (e) => {
     e.preventDefault(); // prevent page from refreshing 
 
@@ -37,6 +56,7 @@ form.addEventListener('submit', (e) => {
     form.reset();
     });
 
+
 tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
     setFilter(btn.dataset.filter);
@@ -44,9 +64,11 @@ tabButtons.forEach((btn) => {
   });
 });
 
-let todos= [];
+//state
+let todos= loadTodos();
 let activeFilter = 'daily';
 
+//filter function
 function setFilter(nextFilter) {
     activeFilter = nextFilter;
     console.log('Filter set to:', activeFilter);
@@ -58,6 +80,7 @@ function setFilter(nextFilter) {
     render();
 }
 
+//add, delete, toggle functions
 function addTodo(title, timeframe) {
     const todo = {
         id: Date.now().toString(), 
@@ -67,11 +90,14 @@ function addTodo(title, timeframe) {
     };
 
     todos.push(todo);
+    saveTodos();
+    render();
     console.log('Todo added:', todo);
 }
 
 function deleteTodo(id) {
     todos = todos.filter(todo => todo.id !== id);
+    saveTodos();
     render();
 }
 
@@ -83,9 +109,11 @@ function toggleDone(id) {
         return todo;
 
     });
+    saveTodos();
     render();
 }
 
+//Rendering function
 function render() {
     todoList.innerHTML = '';
 
