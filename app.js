@@ -29,7 +29,7 @@ form.addEventListener('submit', (e) => {
 
 tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    activeFilter = btn.dataset.filter;
+    setFilter(btn.dataset.filter);
     render();
   });
 });
