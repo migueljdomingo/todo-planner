@@ -29,7 +29,8 @@ form.addEventListener('submit', (e) => {
 
 tabButtons.forEach((btn) => {
   btn.addEventListener("click", () => {
-    setFilter(btn.dataset.filter);
+    activeFilter = btn.dataset.filter;
+    render();
   });
 });
 
@@ -63,9 +64,18 @@ function render() {
     todoList.innerHTML = '';
     todoList.textContent = `Todos count: ${todos.length}`;
 
-    todos.forEach((todo) => {
+    const visibleTodos = activeFilter === 'all' 
+    ? todos 
+    : todos.filter(todo => todo.timeframe === activeFilter);
+
+    if (visibleTodos.length === 0) {
+        todoList.textContent = "No tasks here yet.";
+        return;
+    } 
+    visibleTodos.forEach((todo) => {
         const row = document.createElement('div');
-        row.textContent = todo.title;
+        row.className = "todo";
+        row.textContent = `${todo.title} [${todo.timeframe}]`;
         todoList.appendChild(row);
     });
 }
