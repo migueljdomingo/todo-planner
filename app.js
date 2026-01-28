@@ -91,6 +91,8 @@ function addTodo(title, timeframe) {
 
     todos.push(todo);
     saveTodos();
+    activeFilter = timeframe;
+    setFilter(activeFilter);
     render();
     console.log('Todo added:', todo);
 }
@@ -169,5 +171,6 @@ function render() {
 
 }
 
+titleInput.focus();
 render();
 
