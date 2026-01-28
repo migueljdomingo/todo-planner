@@ -171,6 +171,8 @@ function render() {
 
 }
 
-titleInput.focus();
+window.addEventListener("click", () => {
+  titleInput.focus();
+}, { once: true });
 render();
 
